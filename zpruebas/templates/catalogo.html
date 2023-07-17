@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campeones - Universo de League of Legends</title>
+    <link rel="shortcut icon" href="{% static 'catalogo/LOL-favicon.png' %}" type="image/x-icon">
+    {% comment %} styles {% endcomment %}
+    <link rel="stylesheet" href="{% static 'catalogo/Catalogo-Styles.css' %}" >
+</head>
+<body>    
+    <div id="bg-img"></div>
+        <article id="container-header">
+            <span>
+                <span><img id="icon_23Iu" src="{% static 'catalogo/ico-central.png' %}"></span>
+            </span>
+            <div id="H1-and-lines">
+                <span>
+                    <div id="diamond-left" class="diamond"></div>
+                    <img id="line-left" class="line" src="{% static 'catalogo/line.png' %}">
+                </span>
+                <span id="champbrowse-title">campeones</span>
+                <span>
+                    <div id="diamond-right" class="diamond"></div>
+                    <img id="line-right" class="line" src="{% static 'catalogo/line.png' %}">
+                </span>
+            </div>
+        </article>
+    <div id="table">
+        <ul>
+            {% for b in campeones %}
+            <li>
+                <a href="{% url 'index' b.id %}">
+                    <div>
+                    </div>
+                    <span id="plantilla-champ">
+                    <img id="img-champ" src="{{ b.imagen }}">
+                            <div id="div-h1">
+                                <h1>{{ b.personaje|upper }}</h1>
+                            </div>
+                            <div id="div-explorar-flecha">
+                                <span id="text-explorar">Explorar</span>
+                                <img id="flecha" src="{% static 'catalogo/flecha.png' %}">
+                            </div>
+                    </span>
+                </a>
+            </li> 
+        {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>

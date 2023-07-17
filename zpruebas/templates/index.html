@@ -1,0 +1,63 @@
+{% load humanize %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% for b in campeones %}
+        {{ b.personaje.capitalize }}
+    </title>
+    <link rel="stylesheet" href="{% static 'index/Index-Styles.css' %}">
+    <style>
+        #container-header{
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-image:url('{{ b.imagen }}');
+            background-size:cover;
+            background-position:60%;
+            position:absolute;
+            width:100%;
+            height:100%;
+        }
+        #container-header-fase-2{
+            background-image:url('{{ b.imagen }}');
+            position:absolute;
+            height:100%;
+            width:100%;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            background-size:cover;
+            background-position:60%;
+            animation: fase2 .3s forwards;
+        }
+        
+        @keyframes fase2 {
+            100%{
+                opacity:0;
+            }
+        }
+
+    </style>
+</head>
+<body>
+        <div id="container-header">
+            <h1 id="h1-container-header">{{ b.personaje|upper }}</h1>
+            <div id="shadow-container-header"></div>
+            <span id="text-container-header">Desplázate para comenzar</span>
+            <img id="flecha-container-header" src="{% static 'index/flecha.png' %}"></img>
+        </div>
+        <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+        </div>
+        <h1 id="h1-container-header-info">{{ b.personaje|upper }}</h1>
+        <img id="linea-diamante" src="{% static 'index/linea-diamante.png' %}"></img>
+        <p id="g">{{ b.informacion|safe }}</p>
+        {% endfor %}
+    <script src="{% static 'index/script.js' %}"></script>
+</body>
+</html>
